@@ -373,7 +373,7 @@
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="7" cy="8" r="3" stroke="#173C1E" stroke-width="1.5"/><circle cx="15" cy="8" r="3" stroke="#173C1E" stroke-width="1.5"/><path d="M2 19c0-3 2.5-5 5-5s5 2 5 5M10 19c0-3 2.5-5 5-5s5 2 5 5" stroke="#173C1E" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3>A community, not a queue</h3>
-          <p>You're part of a growing group of students supporting each other from application to acceptance and beyond.</p>
+          <p>You're not a case number. You're part of a growing group of students supporting each other from application to acceptance and beyond.</p>
         </div>
       </div>
     </div>
@@ -612,20 +612,20 @@
         </div>
       </div>
 
-      <form onsubmit="handleSubmit(event)">
+      <form id="contact-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="field">
             <label for="name">Full name</label>
-            <input id="name" type="text" placeholder="Your name" required>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" type="email" placeholder="you@example.com" required>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
           </div>
         </div>
         <div class="field">
           <label for="topic">What do you need help with?</label>
-          <select id="topic">
+          <select id="topic" name="topic">
             <option>Essay or application mentorship</option>
             <option>Volunteering with SEED</option>
             <option>Something else</option>
@@ -633,10 +633,10 @@
         </div>
         <div class="field">
           <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell us a bit about your situation and what you're aiming for..." required></textarea>
+          <textarea id="message" name="message" placeholder="Tell us a bit about your situation and what you're aiming for..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send message</button>
-        <p class="form-note" id="form-note">This form is a design preview and isn't connected yet — link it to email or a Google Form when you're ready to go live.</p>
+        <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;justify-content:center;">Send message</button>
+        <p class="form-note" id="form-note">We'll get back to you within a few days.</p>
       </form>
 
     </div>
@@ -693,10 +693,35 @@
   }
   function handleSubmit(e){
     e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const btn = document.getElementById('submit-btn');
     const note = document.getElementById('form-note');
-    note.textContent = "Thanks! (Preview only — connect this form to email or a form service to actually receive messages.)";
-    note.style.color = "#173C1E";
-    note.style.fontWeight = "600";
+
+    btn.disabled = true;
+    btn.textContent = "Sending...";
+
+    fetch('https://formspree.io/f/xjgqpvaq', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if(response.ok){
+        form.reset();
+        btn.textContent = "Send message";
+        btn.disabled = false;
+        note.textContent = "Thanks — your message is in! We'll get back to you within a few days.";
+        note.style.color = "#173C1E";
+        note.style.fontWeight = "600";
+      } else {
+        throw new Error('Submission failed');
+      }
+    }).catch(() => {
+      btn.textContent = "Send message";
+      btn.disabled = false;
+      note.textContent = "Something went wrong sending that. Mind trying again, or emailing us directly?";
+      note.style.color = "#B23A3A";
+      note.style.fontWeight = "600";
+    });
   }
 </script>
 
