@@ -319,24 +319,64 @@
           <a class="btn btn-ghost" href="#" onclick="goTo('contact');return false;">Get in touch</a>
         </div>
       </div>
-      <div class="hero-vine-wrap" aria-hidden="true">
-        <svg viewBox="0 0 340 380" width="100%" height="100%">
-          <path class="vine-path" d="M40 370 C 40 300, 120 300, 110 240 C 100 180, 30 190, 40 130 C 50 70, 140 80, 150 20" />
-          <g class="leaf-pop" style="animation-delay:.9s;transform-origin:110px 240px;">
-            <ellipse cx="110" cy="240" rx="20" ry="11" fill="#8FB252" transform="rotate(-25 110 240)"/>
-          </g>
-          <g class="leaf-pop" style="animation-delay:1.3s;transform-origin:40px 130px;">
-            <ellipse cx="40" cy="130" rx="22" ry="12" fill="#173C1E" transform="rotate(15 40 130)"/>
-          </g>
-          <g class="leaf-pop" style="animation-delay:1.7s;transform-origin:150px 20px;">
-            <ellipse cx="150" cy="20" rx="24" ry="13" fill="#8FB252" transform="rotate(-10 150 20)"/>
-            <ellipse cx="150" cy="20" rx="24" ry="13" fill="none" stroke="#173C1E" stroke-width="1" transform="rotate(-10 150 20)"/>
-          </g>
-          <g class="leaf-pop" style="animation-delay:2.1s;transform-origin:40px 370px;">
-            <ellipse cx="40" cy="370" rx="18" ry="10" fill="#C9DDA3" transform="rotate(20 40 370)"/>
-          </g>
-        </svg>
-      </div>
+     <div class="hero-vine-wrap" aria-hidden="true">
+  <svg viewBox="0 0 340 380" width="100%" height="100%">
+    <defs>
+      <path id="leafBlade" d="M0,0 C-19,-9 -26,-34 0,-54 C26,-34 19,-9 0,0 Z"/>
+    </defs>
+
+    <path class="vine-path" d="M40 370 C 40 300, 120 300, 110 240 C 100 180, 30 190, 40 130 C 50 70, 140 80, 150 20" />
+
+    <!-- leaf 1 -->
+    <g class="leaf-pop" style="animation-delay:.7s;transform-origin:56px 320px;">
+      <g transform="translate(56,320) rotate(-55) scale(.7)">
+        <use href="#leafBlade" fill="#C9DDA3"/>
+        <path d="M0,-3 L0,-48" stroke="#173C1E" stroke-width="1" opacity=".4" fill="none" stroke-linecap="round"/>
+        <path d="M0,-14 L-9,-22 M0,-14 L9,-22 M0,-28 L-8,-35 M0,-28 L8,-35" stroke="#173C1E" stroke-width=".6" opacity=".3" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- leaf 2 -->
+    <g class="leaf-pop" style="animation-delay:1s;transform-origin:110px 240px;">
+      <g transform="translate(110,240) rotate(120) scale(1)">
+        <use href="#leafBlade" fill="#8FB252"/>
+        <path d="M0,-3 L0,-50" stroke="#173C1E" stroke-width="1.1" opacity=".45" fill="none" stroke-linecap="round"/>
+        <path d="M0,-16 L-10,-25 M0,-16 L10,-25 M0,-31 L-9,-39 M0,-31 L9,-39" stroke="#173C1E" stroke-width=".7" opacity=".35" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- leaf 3 -->
+    <g class="leaf-pop" style="animation-delay:1.3s;transform-origin:70px 175px;">
+      <g transform="translate(70,175) rotate(-100) scale(.85)">
+        <use href="#leafBlade" fill="#8FB252"/>
+        <path d="M0,-3 L0,-48" stroke="#173C1E" stroke-width="1" opacity=".4" fill="none" stroke-linecap="round"/>
+        <path d="M0,-14 L-9,-22 M0,-14 L9,-22 M0,-28 L-8,-35 M0,-28 L8,-35" stroke="#173C1E" stroke-width=".6" opacity=".3" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- leaf 4 -->
+    <g class="leaf-pop" style="animation-delay:1.6s;transform-origin:40px 130px;">
+      <g transform="translate(40,130) rotate(45) scale(1.05)">
+        <use href="#leafBlade" fill="#173C1E"/>
+        <path d="M0,-3 L0,-52" stroke="#FEFAE6" stroke-width="1" opacity=".3" fill="none" stroke-linecap="round"/>
+        <path d="M0,-17 L-11,-26 M0,-17 L11,-26 M0,-33 L-9,-41 M0,-33 L9,-41" stroke="#FEFAE6" stroke-width=".6" opacity=".25" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- growing tip: two young leaflets + a bud -->
+    <g class="leaf-pop" style="animation-delay:2s;transform-origin:150px 20px;">
+      <g transform="translate(150,20) rotate(-40) scale(.55)">
+        <use href="#leafBlade" fill="#8FB252"/>
+        <path d="M0,-3 L0,-48" stroke="#173C1E" stroke-width="1" opacity=".4" fill="none" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(150,20) rotate(30) scale(.5)">
+        <use href="#leafBlade" fill="#C9DDA3"/>
+        <path d="M0,-3 L0,-48" stroke="#173C1E" stroke-width="1" opacity=".4" fill="none" stroke-linecap="round"/>
+      </g>
+      <circle cx="150" cy="14" r="4" fill="#8FB252"/>
+    </g>
+  </svg>
+</div>
     </div>
   </section>
 
